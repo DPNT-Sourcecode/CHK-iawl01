@@ -26,10 +26,10 @@ def checkout(skus):
                 remaining_quantity = quantity
                 
                 #All instances where offer can be applied
-                for offer in offer_quantities:                                        
+                for offer in offer_quantities:                         
                     offer_quantity = (remaining_quantity // offer)
                     cost_total += offer_quantity * self.offers[offer]
-                    remaining_quantity -= offer_quantity
+                    remaining_quantity -= (offer_quantity * offer) 
                     
                 #Any remainder where offers can't be applied
                 cost_total += remaining_quantity * self.cost
@@ -100,6 +100,7 @@ def checkout(skus):
             return -1
     
     return total
+
 
 
 
