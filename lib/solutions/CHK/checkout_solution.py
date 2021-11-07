@@ -59,7 +59,28 @@ def checkout(skus):
                     "C" : SKU_database(20, False, {},  False, 0, 0),
                     "D" : SKU_database(15, False, {},  False, 0, 0),
                     "E" : SKU_database(40, False, {},  True,  2, "B"),
-                    "F" : SKU_database(10, False, {},  True,  3, "F")
+                    "F" : SKU_database(10, False, {},  True,  3, "F"),
+                    "G" : SKU_database(20, False, {},  False, 0, 0),
+                    "H" : SKU_database(10, True,  {10:80, 5: 45},  False, 0, 0),
+                    "I" : SKU_database(35, False, {},  False, 0, 0),
+                    "J" : SKU_database(60, False, {},  False, 0, 0),
+                    "K" : SKU_database(80, True,  {2: 150},  False, 0, 0),
+                    "L" : SKU_database(90, False, {},  False, 0, 0),
+                    "M" : SKU_database(15, False, {},  False, 0, 0),
+                    "N" : SKU_database(40, False, {},  True, 3, "M"),
+                    "O" : SKU_database(10, False, {},  False, 0, 0),
+                    "P" : SKU_database(50, True,  {5: 200},  False, 0, 0),
+                    "Q" : SKU_database(30, True,  {3: 80},  False, 0, 0),
+                    "R" : SKU_database(50, False, {},  True, 3, "Q"),
+                    "S" : SKU_database(30, False, {},  False, 0, 0),
+                    "T" : SKU_database(20, False, {},  False, 0, 0),
+                    "U" : SKU_database(40, False, {},  True, 3, "U"),
+                    "V" : SKU_database(50, True,  {3: 130, 2:90},  False, 0, 0),
+                    "W" : SKU_database(20, False, {},  False, 0, 0),
+                    "X" : SKU_database(90, False, {},  False, 0, 0),
+                    "Y" : SKU_database(10, False, {},  False, 0, 0),
+                    "Z" : SKU_database(50, False, {},  False, 0, 0)
+                  
                     }
     
     total = 0
@@ -101,5 +122,6 @@ def checkout(skus):
             return -1
     
     return total
+
 
 
