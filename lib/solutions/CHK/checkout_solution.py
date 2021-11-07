@@ -6,13 +6,15 @@ def checkout(skus):
     
     class SKU_database:
         def __init__(self, cost, offer_available, offers, 
-                     multi_offer_available, multi_offer_quantity, multi_offer_free):
+                     multi_offer_available, multi_offer_quantity, multi_offer_free,
+                     discount_group):
             self.cost = cost
             self.offer_available = offer_available
             self.offers = offers
             self.multi_offer_available = multi_offer_available
             self.multi_offer_quantity = multi_offer_quantity
             self.multi_offer_free = multi_offer_free
+            self.discount_group = discount_group
             
             
             
@@ -50,8 +52,13 @@ def checkout(skus):
             
             else :
                 return ""
+   
             
-            
+    class group_discount:
+        def __init__(self, group_skus, group_quantity, group_price):
+            self.group_skus = group_skus
+            self.group_quantity = group_quantity
+            self.group_price = group_price
             
     
     sku_database = {"A" : SKU_database(50, True, {5: 200, 3: 130}, False, 0, 0),
@@ -64,7 +71,7 @@ def checkout(skus):
                     "H" : SKU_database(10, True,  {10:80, 5: 45},  False, 0, 0),
                     "I" : SKU_database(35, False, {},  False, 0, 0),
                     "J" : SKU_database(60, False, {},  False, 0, 0),
-                    "K" : SKU_database(80, True,  {2: 150},  False, 0, 0),
+                    "K" : SKU_database(70, True,  {2: 120},  False, 0, 0),
                     "L" : SKU_database(90, False, {},  False, 0, 0),
                     "M" : SKU_database(15, False, {},  False, 0, 0),
                     "N" : SKU_database(40, False, {},  True, 3, "M"),
@@ -72,25 +79,34 @@ def checkout(skus):
                     "P" : SKU_database(50, True,  {5: 200},  False, 0, 0),
                     "Q" : SKU_database(30, True,  {3: 80},  False, 0, 0),
                     "R" : SKU_database(50, False, {},  True, 3, "Q"),
-                    "S" : SKU_database(30, False, {},  False, 0, 0),
+                    "S" : SKU_database(20, False, {},  False, 0, 0),
                     "T" : SKU_database(20, False, {},  False, 0, 0),
                     "U" : SKU_database(40, False, {},  True, 4, "U"),
                     "V" : SKU_database(50, True,  {3: 130, 2:90},  False, 0, 0),
                     "W" : SKU_database(20, False, {},  False, 0, 0),
-                    "X" : SKU_database(90, False, {},  False, 0, 0),
-                    "Y" : SKU_database(10, False, {},  False, 0, 0),
-                    "Z" : SKU_database(50, False, {},  False, 0, 0)
+                    "X" : SKU_database(17, False, {},  False, 0, 0),
+                    "Y" : SKU_database(20, False, {},  False, 0, 0),
+                    "Z" : SKU_database(21, False, {},  False, 0, 0)
                   
                     }
+    
+    group_discount_database = [group_discount("STXYZ", 3, 45)]
+    
     
     total = 0
     #Get all unique items in the list
     unique_items = set(skus)
     
+    #System design isn't ideal for group discounts, will have to resolve those first
+    for group in group_discount_database:
+        for discount_group_item in group:
+            
     
+    
+    
+    #Check for offers involving multiple items, as this might modify quantities
     available_free_items = ""
     
-    #Check for offers involving multiple items first, as this might modify quantities
     for item in unique_items:
         #Count number of instances of an item being checked out
         item_quantity = skus.count(item)
@@ -122,4 +138,5 @@ def checkout(skus):
             return -1
     
     return total
+
 
