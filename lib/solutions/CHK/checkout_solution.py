@@ -8,9 +8,16 @@ def checkout(skus):
                     "C" : 20,
                     "D" : 15
                     }
-    total = 0
     
-    for item in skus:
+    total = 0
+    #Get all unique items in the list
+    unique_items = set(skus)
+    
+    
+    for item in unique_items:
+
+        item_quantity = skus.count(item)
+        
         try:
             total += sku_database[item]
             
@@ -19,6 +26,7 @@ def checkout(skus):
             return -1
     
     return total
+
 
 
 
