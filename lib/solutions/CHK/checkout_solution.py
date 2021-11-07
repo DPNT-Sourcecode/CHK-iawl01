@@ -19,13 +19,15 @@ def checkout(skus):
                 
                 #Any remainder where offer can't be applied
                 cost_total += (quantity % self.offer_quantity) * self.cost
-                return 
+
+                return cost_total
+            
             else:
                 return quantity * self.cost
             
     
     sku_database = {"A" : SKU_database(50, True, 3, 130),
-                    "B" : SKU_database(30, False, 2, 45),
+                    "B" : SKU_database(30, True, 2, 45),
                     "C" : SKU_database(20, False, 0, 0),
                     "D" : SKU_database(15, False, 0, 0)
                     }
@@ -48,11 +50,4 @@ def checkout(skus):
             return -1
     
     return total
-
-
-
-
-
-
-
 
