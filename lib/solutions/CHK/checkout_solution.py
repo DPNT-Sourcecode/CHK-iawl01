@@ -5,14 +5,17 @@
 def checkout(skus):  
     
     class SKU_database:
-        def __init__(self, cost, offer_available, offer_quantity, offer_price):
+        def __init__(self, cost, offer_available, offer_quantity, offer_cost):
             self.cost = cost
             self.offer_available = offer_available
             self.offer_quantity = offer_quantity
-            self.offer_price = offer_price
+            self.offer_cost = offer_cost
             
         def get_total_price(self, quantity):
-            return 
+            if (offer_available):
+                return quantity * self.cost
+            else:
+                return quantity * self.cost
             
     
     sku_database = {"A" : SKU_database(50, False, 0, 0),
@@ -32,13 +35,14 @@ def checkout(skus):
         item_quantity = skus.count(item)
         
         try:
-            total += sku_database[item]
+            total += sku_database[item].get_total_price(item_quantity)
             
         except KeyError as e:
             # Return -1 on key error
             return -1
     
     return total
+
 
 
 
