@@ -10,7 +10,13 @@ def checkout(skus):
                     }
     total = 0
     
+    for item in skus:
+        try:
+            total += sku_database[item]
+        except KeyError as e:
+            return -1
     
     return total
+
 
 
