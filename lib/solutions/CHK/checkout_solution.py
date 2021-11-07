@@ -38,7 +38,7 @@ def checkout(skus):
             if(self.multi_offer_available):
                 #All possible free items available with offer
                 total_free = quantity // self.multi_offer_quantity           
-                return multi_offer_free * total_free
+                return self.multi_offer_free * total_free
             
             else :
                 return ""
@@ -46,11 +46,11 @@ def checkout(skus):
             
             
     
-    sku_database = {"A" : SKU_database(50, True, 3, 130),
-                    "B" : SKU_database(30, True, 2, 45),
-                    "C" : SKU_database(20, False, 0, 0),
-                    "D" : SKU_database(15, False, 0, 0),
-                    "E" : SKU_database(40, False, 0, 0)
+    sku_database = {"A" : SKU_database(50, True, 3, 130, False, 0, 0),
+                    "B" : SKU_database(30, True, 2, 45,  False, 0, 0),
+                    "C" : SKU_database(20, False, 0, 0,  False, 0, 0),
+                    "D" : SKU_database(15, False, 0, 0,  False, 0, 0),
+                    "E" : SKU_database(40, False, 0, 0,  True,  2, "B")
                     }
     
     total = 0
@@ -81,6 +81,9 @@ def checkout(skus):
         item_quantity = skus.count(item)
         item_free = available_free_items.count(item)
         
+        #Subtract available free items, but don't go negative
+        item_quantity = max(0, item_quantity - item_free)
+        
         try:
             total += sku_database[item].get_total_price(item_quantity)
             
@@ -89,4 +92,5 @@ def checkout(skus):
             return -1
     
     return total
+
 
