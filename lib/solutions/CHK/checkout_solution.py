@@ -5,12 +5,11 @@
 def checkout(skus):  
     
     class SKU_database:
-        def __init__(self, cost, offer_available, offer_quantity, offer_cost, 
+        def __init__(self, cost, offer_available, offers, 
                      multi_offer_available, multi_offer_quantity, multi_offer_free):
             self.cost = cost
             self.offer_available = offer_available
-            self.offer_quantity = offer_quantity
-            self.offer_cost = offer_cost
+            self.offers = offers
             self.multi_offer_available = multi_offer_available
             self.multi_offer_quantity = multi_offer_quantity
             self.multi_offer_free = multi_offer_free
@@ -20,11 +19,14 @@ def checkout(skus):
         def get_total_price(self, quantity):
             
             if (self.offer_available):
-                #All instances where offer can be applied
-                cost_total = (quantity // self.offer_quantity) * self.offer_cost
                 
-                #Any remainder where offer can't be applied
-                cost_total += (quantity % self.offer_quantity) * self.cost
+                #Cycle through multiple offers
+                for offer in self.offers.keys():                      
+                    #All instances where offer can be applied
+                    cost_total = (quantity // self.offer_quantity) * self.offer_cost
+                    
+                    #Any remainder where offer can't be applied
+                    cost_total += (quantity % self.offer_quantity) * self.cost
 
                 return cost_total
             
@@ -46,11 +48,11 @@ def checkout(skus):
             
             
     
-    sku_database = {"A" : SKU_database(50, True, 3, 130, False, 0, 0),
-                    "B" : SKU_database(30, True, 2, 45,  False, 0, 0),
-                    "C" : SKU_database(20, False, 0, 0,  False, 0, 0),
-                    "D" : SKU_database(15, False, 0, 0,  False, 0, 0),
-                    "E" : SKU_database(40, False, 0, 0,  True,  2, "B")
+    sku_database = {"A" : SKU_database(50, True, {5: 200, 3: 130}, False, 0, 0),
+                    "B" : SKU_database(30, True, {2: 45},  False, 0, 0),
+                    "C" : SKU_database(20, False, {},  False, 0, 0),
+                    "D" : SKU_database(15, False, {},  False, 0, 0),
+                    "E" : SKU_database(40, False, {},  True,  2, "B")
                     }
     
     total = 0
@@ -92,5 +94,6 @@ def checkout(skus):
             return -1
     
     return total
+
 
 
