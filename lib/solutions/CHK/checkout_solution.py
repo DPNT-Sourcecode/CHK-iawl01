@@ -74,7 +74,7 @@ def checkout(skus):
                     "R" : SKU_database(50, False, {},  True, 3, "Q"),
                     "S" : SKU_database(30, False, {},  False, 0, 0),
                     "T" : SKU_database(20, False, {},  False, 0, 0),
-                    "U" : SKU_database(40, False, {},  True, 3, "U"),
+                    "U" : SKU_database(40, False, {},  True, 4, "U"),
                     "V" : SKU_database(50, True,  {3: 130, 2:90},  False, 0, 0),
                     "W" : SKU_database(20, False, {},  False, 0, 0),
                     "X" : SKU_database(90, False, {},  False, 0, 0),
@@ -122,6 +122,7 @@ def checkout(skus):
             return -1
     
     return total
+
 
 
 
