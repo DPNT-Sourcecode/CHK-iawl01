@@ -12,14 +12,20 @@ def checkout(skus):
             self.offer_cost = offer_cost
             
         def get_total_price(self, quantity):
-            if (offer_available):
-                return quantity * self.cost
+            
+            if (self.offer_available):
+                #All instances where offer can be applied
+                cost_total = (quantity // self.offer_quantity) * self.offer_cost
+                
+                #Any remainder where offer can't be applied
+                cost_total += (quantity % self.offer_quantity) * self.cost
+                return 
             else:
                 return quantity * self.cost
             
     
-    sku_database = {"A" : SKU_database(50, False, 0, 0),
-                    "B" : SKU_database(30, False, 0, 0),
+    sku_database = {"A" : SKU_database(50, True, 3, 130),
+                    "B" : SKU_database(30, False, 2, 45),
                     "C" : SKU_database(20, False, 0, 0),
                     "D" : SKU_database(15, False, 0, 0)
                     }
@@ -42,6 +48,7 @@ def checkout(skus):
             return -1
     
     return total
+
 
 
 
