@@ -29,7 +29,8 @@ def checkout(skus):
     sku_database = {"A" : SKU_database(50, True, 3, 130),
                     "B" : SKU_database(30, True, 2, 45),
                     "C" : SKU_database(20, False, 0, 0),
-                    "D" : SKU_database(15, False, 0, 0)
+                    "D" : SKU_database(15, False, 0, 0),
+                    "E" : SKU_database(40, False, 0, 0)
                     }
     
     total = 0
@@ -50,4 +51,5 @@ def checkout(skus):
             return -1
     
     return total
+
 
