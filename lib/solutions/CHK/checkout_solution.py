@@ -57,14 +57,29 @@ def checkout(skus):
     #Get all unique items in the list
     unique_items = set(skus)
     
+    
+    available_free_items = ""
+    
     #Check for offers involving multiple items first, as this might modify quantities
-   # available_free_items = 
+    for item in unique_items:
+        #Count number of instances of an item being checked out
+        item_quantity = skus.count(item)
+        try:
+            available_free_items += sku_database[item].get_multiple_item_promotion(item_quantity)
+            
+        except KeyError as e:
+            # Return -1 on key error
+            return -1
+   
     
+   
     
+    #Checkout each item by quantity
     for item in unique_items:
 
         #Count number of instances of an item being checked out
         item_quantity = skus.count(item)
+        item_free = available_free_items.count(item)
         
         try:
             total += sku_database[item].get_total_price(item_quantity)
@@ -74,6 +89,4 @@ def checkout(skus):
             return -1
     
     return total
-
-
 
