@@ -20,13 +20,18 @@ def checkout(skus):
             
             if (self.offer_available):
                 
-                #Cycle through multiple offers
-                for offer in self.offers.keys():                      
-                    #All instances where offer can be applied
-                    cost_total = (quantity // self.offer_quantity) * self.offer_cost
+                #Cycle through multiple offers, largest quantity first
+                offer_quantities = self.offers.keys()
+                cost_total = 0
+                
+                #All instances where offer can be applied
+                for offer in offer_quantities:                                        
+                    offer_quantity = (quantity // offer)
+                    cost_total += offer_quantity * self.offers[offer]
+                    quantity -= offer_quantity
                     
-                    #Any remainder where offer can't be applied
-                    cost_total += (quantity % self.offer_quantity) * self.cost
+                #Any remainder where offers can't be applied
+                cost_total += quantity * self.cost
 
                 return cost_total
             
@@ -94,4 +99,5 @@ def checkout(skus):
             return -1
     
     return total
+
 
