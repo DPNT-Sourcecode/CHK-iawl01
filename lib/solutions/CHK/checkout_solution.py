@@ -6,15 +6,13 @@ def checkout(skus):
     
     class SKU_database:
         def __init__(self, cost, offer_available, offers, 
-                     multi_offer_available, multi_offer_quantity, multi_offer_free,
-                     discount_group):
+                     multi_offer_available, multi_offer_quantity, multi_offer_free):
             self.cost = cost
             self.offer_available = offer_available
             self.offers = offers
             self.multi_offer_available = multi_offer_available
             self.multi_offer_quantity = multi_offer_quantity
             self.multi_offer_free = multi_offer_free
-            self.discount_group = discount_group
             
             
             
@@ -54,12 +52,7 @@ def checkout(skus):
                 return ""
    
             
-    class group_discount:
-        def __init__(self, group_skus, group_quantity, group_price):
-            self.group_skus = group_skus
-            self.group_quantity = group_quantity
-            self.group_price = group_price
-            
+
     
     sku_database = {"A" : SKU_database(50, True, {5: 200, 3: 130}, False, 0, 0),
                     "B" : SKU_database(30, True, {2: 45},  False, 0, 0),
@@ -90,17 +83,26 @@ def checkout(skus):
                   
                     }
     
-    group_discount_database = [group_discount("STXYZ", 3, 45)]
+    
+    #SKU, group_quantity, group_price
+    group_discount_database = [["STXYZ", 3, 45]]
     
     
     total = 0
     #Get all unique items in the list
     unique_items = set(skus)
     
+
     #System design isn't ideal for group discounts, will have to resolve those first
-    #for group in group_discount_database:
-    #    for discount_group_item in group:
+    for group in group_discount_database:
+        available_group_items = ""
+        
+        for discount_group_item in group[0]:
+            available_group_items += skus.count(discount_group_item) * discount_group_item 
             
+        print(available_group_items)
+            
+        
     
     
     
@@ -138,5 +140,6 @@ def checkout(skus):
             return -1
     
     return total
+
 
 
