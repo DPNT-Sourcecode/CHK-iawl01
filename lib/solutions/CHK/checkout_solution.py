@@ -98,8 +98,8 @@ def checkout(skus):
     unique_items = set(skus)
     
     #System design isn't ideal for group discounts, will have to resolve those first
-    for group in group_discount_database:
-        for discount_group_item in group:
+    #for group in group_discount_database:
+    #    for discount_group_item in group:
             
     
     
@@ -138,4 +138,5 @@ def checkout(skus):
             return -1
     
     return total
+
 
