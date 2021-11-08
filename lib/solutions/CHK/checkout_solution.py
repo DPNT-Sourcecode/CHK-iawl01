@@ -100,7 +100,9 @@ def checkout(skus):
         for discount_group_item in group[0]:
             available_group_items += skus.count(discount_group_item) * discount_group_item 
             
-        print(available_group_items)
+        #Get amount of times that the discount can be applied
+        total += (len(available_group_items) // group[1]) * group[2]
+        print(available_group_items, total)
             
         
     
@@ -140,6 +142,7 @@ def checkout(skus):
             return -1
     
     return total
+
 
 
 
