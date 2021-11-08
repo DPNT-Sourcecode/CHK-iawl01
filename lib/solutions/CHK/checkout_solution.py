@@ -102,10 +102,11 @@ def checkout(skus):
             available_group_items += skus.count(discount_group_item) * discount_group_item 
             
         #Get amount of times that the discount can be applied
-        total += (len(available_group_items) // group[1]) * group[2]
+        discountable_items_length = (len(available_group_items) // group[1])
+        total += discountable_items_length * group[2]
         
         #Select the most expensive items to be removed first as part of any offer
-        print(available_group_items, total)
+        print(available_group_items, available_group_items[discountable_items_length * group[1]:], total)
             
         
     
@@ -145,6 +146,7 @@ def checkout(skus):
             return -1
     
     return total
+
 
 
 
