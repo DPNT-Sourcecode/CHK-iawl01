@@ -85,7 +85,8 @@ def checkout(skus):
     
     
     #SKU, group_quantity, group_price
-    group_discount_database = [["STXYZ", 3, 45]]
+    #SKUs in order of price. Inelegant solution for the future, needs revision
+    group_discount_database = [["ZSTYX", 3, 45]]
     
     
     total = 0
@@ -102,6 +103,8 @@ def checkout(skus):
             
         #Get amount of times that the discount can be applied
         total += (len(available_group_items) // group[1]) * group[2]
+        
+        #Select the most expensive items to be removed first as part of any offer
         print(available_group_items, total)
             
         
@@ -142,6 +145,7 @@ def checkout(skus):
             return -1
     
     return total
+
 
 
 
