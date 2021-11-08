@@ -93,6 +93,8 @@ def checkout(skus):
     #Get all unique items in the list
     unique_items = set(skus)
     
+    available_free_items = ""
+    
 
     #System design isn't ideal for group discounts, will have to resolve those first
     for group in group_discount_database:
@@ -106,15 +108,11 @@ def checkout(skus):
         total += discountable_items_length * group[2]
         
         #Select the most expensive items to be removed first as part of any offer
-        print(available_group_items, available_group_items[discountable_items_length * group[1]:], total)
-            
-        
+        #As the list is pre-sorted, slicing the list works to select which items have been counted
+        available_free_items += available_group_items[:discountable_items_length * group[1]]
+
     
-    
-    
-    #Check for offers involving multiple items, as this might modify quantities
-    available_free_items = ""
-    
+    #Check for offers involving multiple items, as this might modify quantities   
     for item in unique_items:
         #Count number of instances of an item being checked out
         item_quantity = skus.count(item)
@@ -146,6 +144,7 @@ def checkout(skus):
             return -1
     
     return total
+
 
 
 
